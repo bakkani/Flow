@@ -1,0 +1,1566 @@
+## Sneha Bedadhala
+Date: 10/28/2022
+Written a code for validating the field
+
+        function TotalSeats(cellvalue, options, rowObject) {
+            if (rowObject.AvaSeats == "1")
+                return "<select id='ddlSeats" + options.rowId + "' name='" + options.rowId + "'style='width:75px;'><option value=1>1</option></select>";
+            else if (rowObject.AvaSeats == "2")
+                return "<select id='ddlSeats" + options.rowId + "' name='" + options.rowId + "'style='width:75px;'><option value=1>1</option><option value=2>2</option></select>";
+            else if (rowObject.AvaSeats == "3")
+                return "<select id='ddlSeats" + options.rowId + "' name='" + options.rowId + "'style='width:75px;'><option value=1>1</option><option value=2>2</option><option value=3>3</option></select>";
+            else if (rowObject.AvaSeats == "4")
+                return "<select id='ddlSeats" + options.rowId + "' name='" + options.rowId + "'style='width:75px;'><option value=1>1</option><option value=2>2</option><option value=3>3</option><option value=4>4</option></select>";
+            else if (rowObject.AvaSeats == "5")
+                return "<select id='ddlSeats" + options.rowId + "' name='" + options.rowId + "'style='width:75px;'><option value=1>1</option><option value=2>2</option><option value=3>3</option><option value=4>4</option><option value=5>5</option></select>";
+        }
+
+
+Date: 11/04/2022
+
+Doing research on implementing code on Session and state management in ASP.NET Core to preserve user data between requests:
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-6.0
+
+Date: 11/11/2022
+
+Code for BookingStatus upon accept or rejecting the ride and populating the alert message
+//AcceptRide
+        function AcceptRide(obj) {
+            var ob = new Object();
+            var id = obj;
+            var Rowdata = jQuery("#tblDetails1").jqGrid('getRowData', id);
+            ob.TxnId = Rowdata.TxnId;
+            ob.BookingStatus = "A";
+
+            PageMethods.SaveData(ob, Onsuccess, OnFailure);
+            function Onsuccess(r) {
+                alert(r);
+                location.reload();
+            }
+            function OnFailure(r) {
+                alert(r);
+            }
+            return false;
+        }
+//Reject ride
+        function RejectRide(obj) {
+            var ob = new Object();
+            var id = obj;
+            var Rowdata = jQuery("#tblDetails1").jqGrid('getRowData', id);
+
+            ob.TxnId = Rowdata.TxnId;
+            ob.BookingStatus = "R";
+
+            PageMethods.SaveData(ob, Onsuccess, OnFailure);
+            function Onsuccess(r) {
+                alert(r);
+                location.reload();
+            }
+            function OnFailure(r) {
+                alert(r);
+            }
+            return false;
+        }
+
+Date: 11/11/2022
+
+Code for Dasboard creation of our application
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Master.aspx.cs" %>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bearcats</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../../index3.html" class="nav-link">Home</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+     
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="../../index3.html" class="brand-link">
+      <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Bearcats</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Login Name</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="../gallery.html" class="nav-link active">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../kanban.html" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Ride Registration
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../gallery.html" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Scheduled Rides
+              </p>
+            </a>
+          </li>
+             
+             
+            <li class="nav-item">
+            <a href="../gallery.html" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Reports
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Fixed Layout</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Logout</a></li>
+              <li class="breadcrumb-item active">Fixed Layout</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <!-- Default box -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Title</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                Start creating your amazing application!
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                Footer
+              </div>
+              <!-- /.card-footer-->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+ 
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+
+<!-- jQuery -->
+<%--<script src="../../plugins/jquery/jquery.min.js"></script>--%>
+</body>
+</html>
+
+Date: 11/24/2022
+
+Started writing validations for the fields following the below document. Reference document for adding validations to the model:
+
+https://learn.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-validation-to-the-model
+
+Date 01/22/2023
+
+Modified with correct heading to the html rider page.
+<table class="table">
+    <tr>
+        <td class="tdheading" align="left">
+            Rider Register
+        </td>
+    </tr>
+
+Date 01/27/2023
+
+ public static string GenerateOTP()
+        {
+            int OTPLength = 6;
+            string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            string OTP = string.Empty;
+
+            Random rand = new Random();
+            for (int i = 0; i < OTPLength; i++)
+            {
+                OTP += saAllowedCharacters[rand.Next(0, 9)];
+            }
+            return OTP;
+        }
+ Sending email implementation
+
+  public static void SendEmail(MailRequest mailRequest)
+        {
+            try
+            {
+                //yuydvagtngyotocj
+                var email = new MimeMessage();
+                email.From.Add(MailboxAddress.Parse(FromEmailAddress));
+                email.To.Add(MailboxAddress.Parse(mailRequest.ToEmail));
+                email.Subject = mailRequest.Subject; 
+                email.Body = new TextPart(TextFormat.Html) { Text = mailRequest.Body };
+
+                // send email
+                using var smtp = new SmtpClient();
+                smtp.Connect(smtpHost, port, SecureSocketOptions.StartTls);
+                smtp.Authenticate(FromEmailAddress, FromAppPwd);
+                smtp.Send(email);
+                smtp.Disconnect(true);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+  public IActionResult Index(ExtendedOTPModel otpModel)
+        {
+            if(ModelState.IsValid)
+            {
+                var baseModel = JsonConvert.DeserializeObject<OTPModel>(TempData["otpModel"].ToString());
+                if (baseModel.generatedOTP==otpModel.OTP)
+                {
+                    TempData["UserId"] = baseModel.UserId;
+                    return RedirectToAction("UpdatePassword");
+                }
+                else
+                {
+                    ModelState.AddModelError("OTP", "OTP is invalid");
+                }
+            }
+            
+
+  public static string SendOTP(string EmailAddress)
+        {
+            string OTP = GenerateOTP();
+            MailRequest mailRequest = new MailRequest();
+            mailRequest.ToEmail = EmailAddress;
+            mailRequest.Subject = "Verification code for Password Change";
+            mailRequest.Body = "<p>Hi,</p><br/><p>Please use below verification code for changing password</p>" +
+                "<br/><h3>" + OTP + "</h3><br/><p>Thanks,</p><br/><p>Bearcats Commute</p>";
+            EmailHelper.SendEmail(mailRequest);
+            return OTP;
+        }
+
+Research on google map integration:
+
+https://developers.google.com/maps/documentation/javascript/get-api-key
+
+02/09/2023
+
+  try
+                        {
+                            OTPModel otpModel = new OTPModel();
+                            otpModel.UserId= userSet.Tables[0].Rows[0][3].ToString();
+                            otpModel.generatedOTP = OTPHelper.SendOTP(emailAddress);
+                            TempData["otpModel"] = JsonConvert.SerializeObject(otpModel);
+                            TempData["OTPExpiryTime"] = DateTime.Now.AddMinutes(3);
+                            return RedirectToAction("Index", "ForgotPwd");
+                        }
+                        catch(Exception ex)
+                        {
+                            ModelState.AddModelError("UserName", "An error occured while sending OTP");
+                        }                          
+Configure session time out for application
+
+  public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+            });
+            services.AddControllersWithViews();
+        }
+Sending email for book ride
+ mailRequest.Body = body.ToString();
+            try
+            {
+                EmailHelper.SendEmail(mailRequest);
+            }
+            catch(Exception ex)
+            {
+                msg = msg + "But an error occured while sending email";
+            }
+
+
+UI Design
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Bearcats_Commute</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/BearcatsStyleSheet.css" />
+</head>
+<body class="BackgroundImage">   
+    @RenderBody()
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+Add total rides page.
+
+ function showTotalRides() {
+        $.jgrid.gridUnload("#tblDetails");
+        $("#tblDetails").jqGrid({
+            url: "/DriverPage/GetTotalRides",
+            datatype: "json",
+            mtype: "GET",
+            colNames: ['', 'Date', 'Time', 'Driver Name', 'Ride Start Address', 'Ride End Address', 'Total Seats', 'Booked Seats', 'Price/Seat'],
+            colModel: [
+                { name: 'TxnId', index: 'TxnId', width: 100, align: 'center', hidden: true },
+                { name: 'Ridedate', index: 'Ridedate', width: 100, align: 'center' },
+                { name: 'RideTime', index: 'RideTime', width: 100, sorttype: "string" },
+                { name: 'DriverName', index: 'DriverName', align: "center", width: 120, sorttype: "string" },
+                { name: 'StartAddress', index: 'StartAddress', align: "center", width: 200, sorttype: "string" },
+                { name: 'EndAddress', index: 'EndAddress', align: "center", width: 200, sorttype: "string" },
+                { name: 'TotalSeats', index: 'TotalSeats', align: "center", width: 100, sorttype: "string" },
+                { name: 'BookedSeats', index: 'BookedSeats', align: "center", width: 100, sorttype: "string" },
+                { name: 'SeatPrice', index: 'SeatPrice', align: "center", width: 100, sorttype: "string" },
+            ],
+            height: '100%',
+            viewrecords: true,
+            caption: "Details",
+            emptyrecords: 'No records Found',
+            rowNum: 20,
+            width: '100%',
+            pager: jQuery("#pager"),
+            cmTemplate: { sortable: false },
+            rownumbers: true,
+            altRows: true,
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                id: "",
+                cell: "",
+                repeatitems: false
+            }
+        });
+        return false;
+    }
+
+Added style to Unauthorized page
+
+    <body class="UnauthorizedBg">
+    <h1 style="color:red;font-weight:bold;">Sorry!</h1>
+    <h3>You are not authorized to access this page.</h3>
+    <a href="/LoginDriver/Index" class="forgot-pw">Login</a>
+</body>
+
+Add start/end dates in Reports page to show all rides.
+
+<script language="javascript" type="text/javascript">
+    var TxnId;
+    $(function () {
+        TxnId = "";
+        $('#StartDate').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            dateFormat: 'M dd yy',
+            yearRange: "-99:+0"
+        });
+        $('#EndDate').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            dateFormat: 'M dd yy',
+            yearRange: "-99:+0"
+        });
+        $("#divclose").click(function () {
+            $("#divstageapp").fadeOut(900);
+        });
+        $("#divstageapp").hide();
+
+        showTotalRides(null,null);
+    });
+
+Add Style to Login Driver page
+
+<div class="container BackGroundImg h-100 w-100" style="max-width:100%">
+    <br /><br /><br />
+    <div class="card row col-4 justify-content-left ml-1">
+        <div class="card-body" style="padding:0%;">
+            @using (Html.BeginForm("Index", "LoginDriver", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="text-center">
+                    <img class="LoginImg" src="~/css/Images/avatar.png" alt="">
+                    <h4 class="mt-1 mb-1 pb-1">Login</h4>
+                </div>
+                <div class="row mb-1">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-outline mb-1">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control form-control-sm" })
+                    @Html.LabelFor(m => m.UserName, new { @class = "form-label" })
+                </div>
+                <div class="form-outline mb-1">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-sm" })
+                    @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                </div>
+
+                <div class="text-center pt-1 mb-1 pb-1">
+                    <button type="submit" class="btn btn-primary btn-block mb-1">Login</button>
+                    <a href="/LoginDriver/ForgotPwd">Forgot password?</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+Add Style to Login Rider Page
+<style>
+    .BackGroundImg {
+        background-image: url("/css/Images/RiderBg.png");
+    }
+
+    .LoginImg {
+        width: 30%;
+        background: rgba(255,255,255, 0.8);
+        border-radius: 50%;
+    }
+
+    .text-danger,
+    a {
+        font-size: small;
+    }
+</style>
+
+Add style to driver Dashboard Page
+
+@section CSS {
+    <style>
+        .bg-green {
+            color: #fff !important;
+            background-color: #28a745 !important;
+            font-size: 0.7rem;
+        }
+
+        .bg-yellow {
+            color: #1f2d3d !important;
+            background-color: #ffc107 !important;
+            font-size: 0.7rem;
+        }
+
+        .card-footer {
+            background-color: rgba(0,0,0,.1);
+        }
+
+        .small-box-footer {
+            display: block;
+            text-align: center;
+            color: white;
+        }
+    </style>
+
+Develop Profile Page for Driver with the below fields:
+
+<table class="table">
+    <tr>
+        <td>
+            <div>
+                @using (Html.BeginForm("ViewProfile", "DriverPage", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "this.querySelectorAll('input').forEach(i => i.disabled = false)" }))
+                {
+                    <div class="row">
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Firstname, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Firstname, new { @class = "form-control form-control-sm", @readonly = "readonly", @disabled = "disabled" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.LastName, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-control-sm", @readonly = "readonly", @disabled = "disabled" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Username, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Username, new { @class = "form-control form-control-sm", @readonly = "readonly", @disabled = "disabled" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Mobile, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Mobile, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Vehicleno, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Vehicleno, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Address1, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Address1, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Address2, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Address2, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.City, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.City, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.State, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.State, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Zip, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Zip, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.EmailAddress, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2 mt-1"><button type="submit" class="btn btn-primary btn-block">Update</button></div>
+                        <div class="col-md-2 mt-1"><button type="button" class="btn btn-danger btn-block" onclick='window.location = "@Url.Action("ViewProfile", "DriverPage")";'>Cancel</button></div>
+                    </div>
+                }
+            </div>
+
+Develop Unauthorized page for Driver Login
+
+@{
+    ViewData["Title"] = "Unauthorized";
+}
+<style>
+    .BackGroundImg {
+        background-image: url("/css/Images/Unauthorized.jpg");
+        padding-top: 5%;
+        padding-left: 35%;
+    }
+
+    a {
+        color: black;
+        font-style: italic;
+        text-decoration-line: underline;
+        font-weight: bold;
+    }
+</style>
+<div class="container BackGroundImg h-100 w-100" style="max-width:100%">
+    <h1 style="color:red;font-weight:bold;">Sorry!</h1>
+    <h3>You are not authorized to access this page.</h3>
+    <a href="/LoginDriver/Index" class="forgot-pw">Login</a>
+</div>
+
+
+Adding Date picker in reports page
+
+ .ui-datepicker,
+        .ui-datepicker table,
+        .ui-datepicker tr,
+        .ui-datepicker td,
+        .ui-datepicker th {
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-spacing: 0;
+            font-size: x-small;
+        }
+
+Develop script to display rides based on filter options
+
+ function showTotalRides(startDate, endDate,rideStatus) {
+            if (startDate == null)
+                startDate = "";
+            if (endDate == null)
+                endDate = "";
+            if (rideStatus == null)
+                rideStatus = "All";
+            $.jgrid.gridUnload("#tblDetails");
+            $("#tblDetails").jqGrid({
+                url: "/DriverPage/GetTotalRides?startDate=" + startDate + "&endDate=" + endDate + "&rideCompStatus=" + rideStatus,
+                datatype: "json",
+                mtype: "GET",
+                colNames: ['', 'Date', 'Time', 'Driver Name', 'Ride Start Address', 'Ride End Address', 'Total Seats', 'Booked Seats', 'Price/Seat','Ride Status'],
+                colModel: [
+                    { name: 'TxnId', index: 'TxnId', width: 100, align: 'center', hidden: true },
+                    { name: 'Ridedate', index: 'Ridedate', width: 100, align: 'center' },
+                    { name: 'RideTime', index: 'RideTime', width: 100, sorttype: "string" },
+                    { name: 'DriverName', index: 'DriverName', align: "center", width: 120, sorttype: "string" },
+                    { name: 'StartAddress', index: 'StartAddress', align: "center", width: 200, sorttype: "string" },
+                    { name: 'EndAddress', index: 'EndAddress', align: "center", width: 200, sorttype: "string" },
+                    { name: 'TotalSeats', index: 'TotalSeats', align: "center", width: 100, sorttype: "string" },
+                    { name: 'BookedSeats', index: 'BookedSeats', align: "center", width: 100, sorttype: "string" },
+                    { name: 'SeatPrice', index: 'SeatPrice', align: "center", width: 100, sorttype: "string" },
+                    { name: 'RideCompletionStatus', index: 'RideCompletionStatus', align: "center", width: 100, sorttype: "string" },
+                ],
+                height: '100%',
+                viewrecords: true,
+                caption: "Details",
+                emptyrecords: 'No records Found',
+                rowNum: 20,
+                width: '100%',
+                pager: jQuery("#pager"),
+                cmTemplate: { sortable: false },
+                rownumbers: true,
+                altRows: true,
+                jsonReader: {
+                    root: "rows",
+                    page: "page",
+                    total: "total",
+                    records: "records",
+                    id: "",
+                    cell: "",
+                    repeatitems: false
+                }
+            });
+            return false;
+        }
+
+
+
+
+Add button function to update rides
+
+        function UpdateSearch() {
+            var startDate = $("#StartDate")[0].value;
+            var endDate = $("#EndDate")[0].value;
+            var rideStatus = $("#RideStatus").val();
+            showTotalRides(startDate, endDate, rideStatus);
+        }
+
+
+Added function to show updated rides Status
+
+ function showNotUpdatedRides() {
+            $.jgrid.gridUnload("#tblDetails");
+            $("#tblDetails").jqGrid({
+                url: "/DriverPage/GetNotUpdatedRides",
+                datatype: "json",
+                mtype: "GET",
+                colNames: ['', 'Date', 'Time', 'Driver Name', 'Ride Start Address', 'Ride End Address', 'Total Seats', 'Booked Seats', 'Price/Seat','Ride Status'],
+                colModel: [
+                    { name: 'TxnId', index: 'TxnId', width: 100, align: 'center', hidden: true },
+                    { name: 'Ridedate', index: 'Ridedate', width: 100, align: 'center' },
+                    { name: 'RideTime', index: 'RideTime', width: 100, sorttype: "string" },
+                    { name: 'DriverName', index: 'DriverName', align: "center", width: 120, sorttype: "string" },
+                    { name: 'StartAddress', index: 'StartAddress', align: "center", width: 200, sorttype: "string" },
+                    { name: 'EndAddress', index: 'EndAddress', align: "center", width: 200, sorttype: "string" },
+                    { name: 'TotalSeats', index: 'TotalSeats', align: "center", width: 100, sorttype: "string" },
+                    { name: 'BookedSeats', index: 'BookedSeats', align: "center", width: 100, sorttype: "string" },
+                    { name: 'SeatPrice', index: 'SeatPrice', align: "center", width: 100, sorttype: "string" },
+                    { name: 'RideCompletionStatus', index: 'RideCompletionStatus', align: "center", width: 100, sorttype: "string" },
+                    //{ name: 'AvaRideStatus', index: 'AvaRideStatus', width: 70, align: 'center', formatter: AvaRideStatus },
+                    //{ name: 'UpdRideStatus', index: 'UpdRideStatus', width: 90, align: 'center', formatter: FileDetails },
+                ],
+                height: '100%',
+                viewrecords: true,
+                caption: "Details",
+                emptyrecords: 'No records Found',
+                rowNum: 20,
+                width: '100%',
+                pager: jQuery("#pager"),
+                cmTemplate: { sortable: false },
+                rownumbers: true,
+                altRows: true,
+                jsonReader: {
+                    root: "rows",
+                    page: "page",
+                    total: "total",
+                    records: "records",
+                    id: "",
+                    cell: "",
+                    repeatitems: false
+                }
+            });
+            return false;
+        }
+
+
+
+Created a table to display ride information
+
+<h3 class="mt-4" style="color:#e17009;">Ride Status</h3>
+   <table class="table">
+        <tr>
+            <td>
+                <div>
+                    <table id="tblDetails"></table>
+                    <div id="pager"></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+
+Code for UI responsive - forgot password
+
+<div class="container BackGroundImg h-100 w-100" style="max-width:100%">
+    <br /><br /><br />
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="card col-5 justify-content-center" style="background-color:#c9edc9;">
+            <div class="card-body" style="padding:0%;">
+                @using (Html.BeginForm("Index", "ForgotPwd", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="text-center">
+                        <h5 class="mt-1 mb-1 pb-1">OTP</h5>
+                    </div>
+                    <div class="row mb-1">
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-outline mb-1">
+                        @Html.TextBoxFor(m => m.OTP, new { @class = "form-control form-control-sm" })
+                        @Html.LabelFor(m => m.OTP, new { @class = "form-label" })
+                    </div>
+                    <div class="text-center pt-1 mb-1 pb-1">
+                        <button type="submit" class="btn btn-success btn-block mb-1">Submit</button>
+                        <a href="/ForgotPwd/GoBack" style="color:black;">Go Back</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+Added popup message after login showing login successful in driver page
+  public IActionResult Index(LoginModel loginModel)
+        {
+            ViewBag.Message = null; 
+            if (ModelState.IsValid)
+            {
+                UserDAL userDAL = new UserDAL();
+                var userSet = userDAL.Login(loginModel);
+                if(userSet.Tables[0].Rows.Count>0)
+                {
+                    string role = userSet.Tables[0].Rows[0][2].ToString();
+                    if (role.ToUpper()=="D")
+                    {
+                        HttpContext.Session.SetString("UserId", userSet.Tables[0].Rows[0][0].ToString());
+                        HttpContext.Session.SetString("UserName", userSet.Tables[0].Rows[0][1].ToString());
+                        HttpContext.Session.SetString("UserRole", role);
+                        ViewBag.Message = "Driver logged in successfully";
+                        //return RedirectToAction("Index","DriverPage");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("UserName", "User is not valid driver");
+                    }
+                    
+                }
+                else
+                {
+                    ModelState.AddModelError("UserName", "User Doesn't Exists");
+                }
+            }
+            return View(loginModel);
+        }
+
+
+Function to update ride status upon selection of options like completed, started, not yet started or cancelled
+
+ function UpdateRideStatus(id) {
+            $("#popupMessage").css("display", "none");
+            var Rowdata = jQuery("#tblDetails").jqGrid('getRowData', id);
+            Rowdata.RideCompletionStatus = jQuery("#newRideStats" + Rowdata.TxnId + "")[0].value;
+            $.ajax({
+                type: "POST",
+                url: "/DriverPage/UpdateRideStatus",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(Rowdata),
+            }).done(function (data) {
+                $("#respText").text(data.responseText);
+                $("#popupMessage").css("display", "block");
+            }).fail(function (data) {
+                $("#respText").text(data.responseText);
+                $("#popupMessage").css("display", "block");
+            });
+            return false;
+        }
+
+
+
+Added the function to show options in ride status:
+
+public static class RideStatuses
+    {
+        public static SelectList GetRideStatus()
+        {
+            List<SelectListItem> rideStatus = new List<SelectListItem>();
+            rideStatus.Add(new SelectListItem() { Text = "All", Value = "All" });
+            rideStatus.Add(new SelectListItem() { Text = "Started", Value = "Started" });
+            rideStatus.Add(new SelectListItem() { Text = "Completed", Value = "Completed" });
+            rideStatus.Add(new SelectListItem() { Text = "Not Yet Started", Value = "Not Yet Started" });
+            rideStatus.Add(new SelectListItem() { Text = "Cancelled", Value = "Cancelled" });
+            return new SelectList(rideStatus, "Value", "Text");
+        }
+    }
+
+Added confirm field in both driver and passenger registrations
+
+  <div class="row form-outline">
+                    <div class="col-md-5">@Html.LabelFor(m => m.ConfirmPassword, new { @class = "form-label" })<span style="color:red">*</span></div>
+                    <div class="col-md-7">@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control form-control-sm" })</div>
+                </div>
+
+
+
+Updated logout functionality
+
+ public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
+Add style to forgot password page by giving background Image
+
+<div class="container BackGroundImg h-100 w-100" style="max-width:100%">
+    <br /><br /><br />
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="card col-5 justify-content-center" style="background-color:#c9edc9;">
+            <div class="card-body" style="padding:0%;">
+
+
+Validating No.of seats field 
+
+ [Display(Name = "No. Of Seats")]
+        [Required(ErrorMessage = "Please enter no. of seats")]
+        [Range(1,4,ErrorMessage ="Seats must be between 1 to 4")]
+        public string AvaSeats { get; set; }
+
+Code for validating price field which must be greater than 0
+
+[Display(Name = "Ride Price Per Seat")]
+        [Required(ErrorMessage = "Please enter ride price per seat")]
+        [Range(0.1, double.PositiveInfinity, ErrorMessage = "Seat price must be greater than 0")]
+        public decimal SeatPrice { get; set; }
+
+********************
+## Ram Reddy. Boppidi
+Date: 11/4/2022
+Function for Accept Button
+
+function btnAccept(cellvalue, options, rowObject) {
+            return '<label id=' + options.rowId + ' onclick="return AcceptRide(' + options.rowId + ');" style="text-decoration:underline;cursor:pointer;color:blue;">' + 'Accept' + '</label>';
+        }
+
+
+Function for Reject Button
+function btnReject(cellvalue, options, rowObject) {
+            return '<label id=' + options.rowId + ' onclick="return RejectRide(' + options.rowId + ');" style="text-decoration:underline;cursor:pointer;color:blue;">' + 'Reject' + '</label>';
+        }
+
+ Below is the Store procedure in My SQL for Driver registration
+
+ DELIMITER $$
+CREATE DEFINER=`admin`@`%` PROCEDURE `SP_DriverRegistration`(      
+in Firstname VARCHAR(255),      
+in LastName VARCHAR(255),      
+in Gender VARCHAR(255),      
+in DOB VARCHAR(255),      
+in Mobile VARCHAR(255),      
+in Vehicleno VARCHAR(255),      
+in Address1 VARCHAR(255),      
+in Address2 VARCHAR(255),      
+in City VARCHAR(255),      
+in State VARCHAR(255),     
+in Zip VARCHAR(255),      
+in IDProof VARCHAR(255),      
+in Idno VARCHAR(255),     
+in Username VARCHAR(255),     
+in Password VARCHAR(255), 
+in SID nvarchar(255),
+out MSG VARCHAR(255)    
+)
+BEGIN   
+ 
+  INSERT INTO DriverRegistration(Firstname,LastName,Gender,DOB,Mobile,Vehicleno,Address1,Address2,City,State,Zip,IDProof,Idno,Username,Password,InsertedDatetime,SID)      
+  SELECT Firstname,LastName,Gender,DOB,Mobile,Vehicleno,Address1,Address2,City,State,Zip,IDProof,Idno,Username,Password,current_timestamp(),SID;     
+     
+     
+  set MSG = 'Driver Registered Successfully';   
+  
+END$$
+DELIMITER ;
+       
+
+Function to display Pop Up Grid:
+
+
+        function showPopupGrid(ViewID) {
+            ViewID = ViewID;
+            jQuery("#tblDetails1").GridUnload();
+            jQuery("#tblDetails1").jqGrid({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: '<%=ResolveUrl("~/WebServices/Rides.asmx/GetRideDetails") %>',
+                datatype: "json",
+                height: '100%',
+                rowNum: 20,
+                width: '100%',
+                postData: {
+                    ViewID: ViewID,
+                },
+                cmTemplate: { sortable: false },
+                colNames: ['', 'Date', 'Time', 'Rider Name', 'Ride Start Address', 'Ride End Address', 'NO. of Seats', '', ''],
+                colModel: [
+                    { name: 'TxnId', index: 'TxnId', width: 100, align: 'center', hidden: true },
+                    { name: 'Ridedate', index: 'Ridedate', width: 100, align: 'center' },
+                    { name: 'RideTime', index: 'RideTime', width: 100, sorttype: "string" },
+                    { name: 'DriverName', index: 'DriverName', align: "center", width: 120, sorttype: "string" },
+                    { name: 'StartAddress', index: 'StartAddress', align: "center", width: 200, sorttype: "string" },
+                    { name: 'EndAddress', index: 'EndAddress', align: "center", width: 200, sorttype: "string" },
+                    { name: 'BookedSeats', index: 'BookedSeats', align: "center", width: 100, sorttype: "string" },
+                    { name: 'Act', index: 'Act', width: 90, align: 'center', formatter: btnAccept },
+                    { name: 'Act', index: 'Act', width: 90, align: 'center', formatter: btnReject },
+
+                ],
+                pager: "#pager1",
+                viewrecords: true,
+                rownumbers: true,
+                caption: "Booked Details",
+                altRows: true,
+                jsonReader: {
+                    root: function (obj) { return obj.rows },
+                    page: function (obj) { return obj.page },
+                    total: function (obj) { return obj.total },
+                    records: function (obj) { return obj.records },
+                    id: "",
+                    cell: "",
+                    repeatitems: false
+                },
+                gridComplete: function () {
+                    var ids = jQuery("#tblDetails1").jqGrid('getDataIDs');
+                    if (ids.length == 0) {
+                    }
+                    else {
+                        for (var i = 0; i < ids.length; i++) {
+                            var cl = ids[i];
+
+                        }
+                    }
+                }
+            });
+            return false;
+        }
+
+
+
+Validation code for Login:
+
+public class LoginModel
+    {
+        [Required(ErrorMessage ="Please enter UserName")]
+        public string UserName { get; set; }
+        [Required(ErrorMessage = "Please enter Password")]
+        public string Password { get; set; }
+    }
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "ConnectionStrings": {
+    //"MDConnection": "data source=HDC3-L-151CJWV\\SQLEXPRESS;Initial Catalog=BearcatCommute;Integrated Security=True;"
+    "MDConnection": "data source=NW47405\\S546831;Initial Catalog=BearcatCommute;Integrated Security=True;"
+  },
+  "AllowedHosts": "*"
+}
+
+<div class="input-group">
+            @Html.TextBoxFor(m => m.NewPassword)
+            @Html.LabelFor(m => m.NewPassword)
+        </div>
+        <div class="input-group">
+            @Html.PasswordFor(m => m.ConfirmPassword)
+            @Html.LabelFor(m => m.ConfirmPassword)
+        </div>
+
+
+Code for OTP Model:
+
+        public string UserId { get; set; }
+        public string generatedOTP { get; set; }
+
+    public class ExtendedOTPModel
+    {
+        [Required(ErrorMessage = "Please enter OTP")]
+        public string OTP { get; set; }
+    }
+
+
+OTP validation code:
+
+public static string GenerateOTP()
+        {
+            int OTPLength = 6;
+            string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            string OTP = string.Empty;
+
+            Random rand = new Random();
+            for (int i = 0; i < OTPLength; i++)
+            {
+                OTP += saAllowedCharacters[rand.Next(0, 9)];
+            }
+            return OTP;
+
+
+private static string FromEmailAddress = "Bearcats.Commute@gmail.com";
+private static string FromAppPwd = "yuydvagtngyotocj";
+private static string smtpHost = "smtp.gmail.com";
+private static int port = 587;   
+
+//Assigning details
+var email = new MimeMessage();
+email.From.Add(MailboxAddress.Parse(FromEmailAddress));
+email.To.Add(MailboxAddress.Parse(mailRequest.ToEmail));
+email.Subject = mailRequest.Subject; 
+email.Body = new TextPart(TextFormat.Html) { Text = mailRequest.Body };
+
+
+
+public static class OTPHelper
+    {
+        public static string SendOTP(string EmailAddress)
+        {
+            string OTP = GenerateOTP();
+            MailRequest mailRequest = new MailRequest();
+            mailRequest.ToEmail = EmailAddress;
+            mailRequest.Subject = "Verification code for Password Change";
+            mailRequest.Body = "<p>Hi,</p><br/><p>Please use below verification code for changing password</p>" +
+                "<br/><h3>" + OTP + "</h3><br/><p>Thanks,</p><br/><p>Bearcats Commute</p>";
+            EmailHelper.SendEmail(mailRequest);
+            return OTP;
+        }
+
+
+ public class OTPModel
+    {
+        public string UserId { get; set; }
+        public string generatedOTP { get; set; }
+    }
+
+    public class ExtendedOTPModel
+    {
+        [Required(ErrorMessage = "Please enter OTP")]
+        public string OTP { get; set; }
+    }
+}
+
+
+Js code for google maps markers:
+
+ //creating new Marker
+        marker = new google.maps.Marker({
+            position: mapsMouseEvent.latLng,
+            animation: google.maps.Animation.DROP,
+        });
+
+        marker.setMap(map);
+        geocodeLatLng(geocoder, map, infoWindow, mapsMouseEvent.latLng.toJSON().lat, mapsMouseEvent.latLng.toJSON().lng);
+    });
+
+Code for OTP expiration after 3 AddMinutes
+
+if (role.ToUpper() == "D")
+                    {
+                        HttpContext.Session.SetString("ForgotPwdUserRole", role);
+                        string emailAddress= userSet.Tables[0].Rows[0][1].ToString();
+                        try
+                        {
+                            OTPModel otpModel = new OTPModel();
+                            otpModel.UserId= userSet.Tables[0].Rows[0][3].ToString();
+                            otpModel.generatedOTP = OTPHelper.SendOTP(emailAddress);
+                            TempData["otpModel"] = JsonConvert.SerializeObject(otpModel);
+                            TempData["OTPExpiryTime"] = DateTime.Now.AddMinutes(3);
+                            return RedirectToAction("Index", "ForgotPwd");
+                        }
+                        catch(Exception ex)
+                        {
+                            ModelState.AddModelError("UserName", "An error occured while sending OTP");
+                        }                        
+                    
+Functions for Start and End addresses:
+
+function selectStartAddress() {
+    document.getElementById("mapDiv").style.display = "block";
+    if (map == null)
+    {
+        initMap(40.35079983422656, -94.88447694817584, 'map');
+    }
+    AddControls(true);
+    return false;
+}
+
+function selectEndAddress() {
+    document.getElementById("mapDiv").style.display = "block";
+    if (map == null)
+    {
+        initMap(40.35079983422656, -94.88447694817584, 'map');
+    }
+    AddControls(false);
+    return false;
+}
+
+Responsive UI for the home Screen 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page-Bearcats_Commute</title>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .HomePagebg {
+            background-image: url("/css/Images/HomePageBG.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+    </style>
+
+</head>
+<body class="HomePagebg">
+    <nav class="navbar navbar-expand-lg" style="background-color:#0b407a;">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" style="color:white;" href="#">Bearcats Commute</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color:white;" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Login
+                </a>
+                <div class="dropdown-menu" aria-labelledby="loginDropdown" style="background-color: #ddd;">
+                    <a class="dropdown-item" href="/LoginDriver/Index">Driver</a>
+                    <a class="dropdown-item" href="/LoginRider/Index">Rider</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color:white;" href="#" id="registerDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Register
+                </a>
+                <div class="dropdown-menu" aria-labelledby="registerDropdown" style="background-color:#ddd;">
+                    <a class="dropdown-item" href="/RegisterDriver/Index">Driver</a>
+                    <a class="dropdown-item" href="/RegisterRider/Index">Rider</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+   
+
+</body>
+</html>
+
+
+Function to initialize and set the map:
+
+function initMap(latitude, longitude, elementId) {
+    geocoder = new google.maps.Geocoder();
+    finalPosition = new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude));
+    map = new google.maps.Map(document.getElementById(elementId), {
+        center: finalPosition,
+        zoom: 15,
+        minZoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var marker = new google.maps.Marker({
+        position: finalPosition,
+        animation: google.maps.Animation.DROP,
+    });
+    marker.setMap(map);
+
+    // Configure the click listener.
+    map.addListener("click", (mapsMouseEvent) => {
+        finalPosition = mapsMouseEvent.latLng;
+        //Clear Marker and creating new marker
+        marker.setMap(null);
+        marker = new google.maps.Marker({
+            position: finalPosition,
+            animation: google.maps.Animation.DROP,
+        });
+        marker.setMap(map);
+    });
+}
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+
+    .BackGroundImg {
+        background-image: url("/css/Images/HomePageBG.png");
+    }
+</style>
+<div class="container BackGroundImg h-100 w-100" style="max-width:100%">
+    <nav class="navbar navbar-expand-lg" style="background-color:#0b407a;">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" style="color:white;" href="#">Bearcats Commute</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color:white;" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Login
+                </a>
+                <div class="dropdown-menu" aria-labelledby="loginDropdown" style="background-color: #ddd;">
+                    <a class="dropdown-item" href="/LoginDriver/Index">Driver</a>
+                    <a class="dropdown-item" href="/LoginRider/Index">Rider</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color:white;" href="#" id="registerDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Register
+                </a>
+                <div class="dropdown-menu" aria-labelledby="registerDropdown" style="background-color:#ddd;">
+                    <a class="dropdown-item" href="/RegisterDriver/Index">Driver</a>
+                    <a class="dropdown-item" href="/RegisterRider/Index">Rider</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+FUnctional code for SideBar:
+
+window.addEventListener('DOMContentLoaded', event => {
+
+    // Toggle the side navigation
+    const sidebarToggle = document.body.querySelector('#sidebarToggle');
+    if (sidebarToggle) {
+        // Uncomment Below to persist sidebar toggle between refreshes
+        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+        //     document.body.classList.toggle('sb-sidenav-toggled');
+        // }
+        sidebarToggle.addEventListener('click', event => {
+            event.preventDefault();
+            document.body.classList.toggle('sb-sidenav-toggled');
+            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+        });
+    }
+
+});
+
+Code for view profile on driver page
+
+@{
+    Layout = "_DriverLayout";
+}
+@model Bearcats_Commute.Models.DriverProfileModel
+@section Scripts {
+    <script>
+        $(function () {
+            Array.from(document.getElementsByClassName("list-group-item-light active")).forEach(function (el) {
+                el.classList.remove('active');
+            });
+            document.getElementById('ViewProfile').classList.add('active');
+        });
+    </script>
+}
+@section CSS {
+    <style>
+        #popupModal {
+            position: absolute;
+            float: left;
+            left: 50%;
+            top: 10%;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn,
+        .form-label,
+        .form-control-sm,
+        .text-danger {
+            font-size: x-small;
+        }
+    </style>
+}
+@if (ViewBag.Message != null)
+{
+    <div class="modal modal-sm show" id="popupModal" tabindex="-1" role="dialog" style="display: block; font-size: small;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="background-color: #1bbe5b">
+                <div class="modal-header" style="color:white;">
+                    <p class="modal-title">@ViewBag.Message</p>
+                    <button type="button" class="close" data-dismiss="modal" onclick='window.location = "@Url.Action("ViewProfile", "DriverPage")";'>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<h3 class="mt-4" style="color:#e17009;">Driver Profile</h3>
+<table class="table">
+    <tr>
+        <td>
+            <div>
+                @using (Html.BeginForm("ViewProfile", "DriverPage", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "this.querySelectorAll('input').forEach(i => i.disabled = false)" }))
+                {
+                    <div class="row">
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Firstname, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Firstname, new { @class = "form-control form-control-sm", @readonly = "readonly", @disabled = "disabled" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.LastName, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-control-sm", @readonly = "readonly", @disabled = "disabled" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Username, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Username, new { @class = "form-control form-control-sm", @readonly = "readonly", @disabled = "disabled" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Mobile, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Mobile, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Vehicleno, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Vehicleno, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Address1, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Address1, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Address2, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Address2, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.City, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.City, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.State, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.State, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.Zip, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.Zip, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2">@Html.LabelFor(m => m.EmailAddress, new { @class = "form-label" })<span style="color:red">*</span></div>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control form-control-sm" })</div>
+                    </div>
+                    <div class="row form-outline">
+                        <div class="col-md-2 mt-1"><button type="submit" class="btn btn-primary btn-block">Update</button></div>
+                        <div class="col-md-2 mt-1"><button type="button" class="btn btn-danger btn-block" onclick='window.location = "@Url.Action("ViewProfile", "DriverPage")";'>Cancel</button></div>
+                    </div>
+                }
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+Code for Update profile on driver page:
+
+ public string UpdateDriverProfile(DriverProfileModel profileModel)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@Mobile", profileModel.Mobile));
+            parameters.Add(new SqlParameter("@Vehicleno", profileModel.Vehicleno));
+            parameters.Add(new SqlParameter("@Address1", profileModel.Address1));
+            parameters.Add(new SqlParameter("@Address2", profileModel.Address2));
+            parameters.Add(new SqlParameter("@City", profileModel.City));
+            parameters.Add(new SqlParameter("@State", profileModel.State));
+            parameters.Add(new SqlParameter("@Zip", profileModel.Zip));
+            parameters.Add(new SqlParameter("@Username", profileModel.Username));
+            parameters.Add(new SqlParameter("@EmailAddress", profileModel.EmailAddress));
+
+            SqlParameter outputParameter = new SqlParameter("@MSG", SqlDbType.VarChar, 200);
+            outputParameter.Direction = ParameterDirection.Output;
+            parameters.Add(outputParameter);
+
+
+            SqlHelper.ExecuteScalar(connectionString, "SP_UpdateDriverProfile", parameters);
+            return outputParameter.Value.ToString();
+        }
+    }
+
+  
+  
+    public class RiderProfileModel
+    {
+        public string Firstname { get; set; }
+        public string LastName { get; set; }
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "Please enter Mobile")]
+        // [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Provided phone number not valid")]
+        public string Mobile { get; set; }
+
+        [Display(Name = "Address ")]
+        public string Address { get; set; }
+
+        [Required(ErrorMessage = "Please enter City")]
+        public string City { get; set; }
+
+        [Required(ErrorMessage = "Please enter State")]
+        public string State { get; set; }
+
+        [Display(Name = "Zip Code")]
+        [Required(ErrorMessage = "Please enter Zip Code")]
+        public string Zip { get; set; }
+
+        [Display(Name = "Email Address")]
+        [Required(ErrorMessage = "Please enter email address")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string EmailAddress { get; set; }
+    }
+
+    foreach(DataRow dr in ds.Tables[2].Rows)
+                {
+                    riderMailReq.ToEmail = Convert.ToString(dr["RiderEmailAddress"]);
+                    try
+                    {
+                        EmailHelper.SendEmail(riderMailReq);
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = msg + "But an error occured while sending email to driver";
+                    }
+                }
+                
+            }
+            return msg;
+        }
+        public IActionResult Reports()
+        {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("UserRole")) && HttpContext.Session.GetString("UserRole").ToUpper() == "D")
+            {
+                ViewBag.UserName = HttpContext.Session.GetString("UserName");
+                ViewBag.RideStatus = RideStatuses.GetRideStatus();
+                return View();
+            }
+            return RedirectToAction("Unauthorized", "LoginDriver");
+        }
+
+public static class RideStatuses
+    {
+        public static SelectList GetRideStatus()
+        {
+            List<SelectListItem> rideStatus = new List<SelectListItem>();
+            rideStatus.Add(new SelectListItem() { Text = "All", Value = "All" });
+            rideStatus.Add(new SelectListItem() { Text = "Started", Value = "Started" });
+            rideStatus.Add(new SelectListItem() { Text = "Completed", Value = "Completed" });
+            rideStatus.Add(new SelectListItem() { Text = "Not Yet Started", Value = "Not Yet Started" });
+            rideStatus.Add(new SelectListItem() { Text = "Cancelled", Value = "Cancelled" });
+            return new SelectList(rideStatus, "Value", "Text");
+        }
+    }
+
+
+      
